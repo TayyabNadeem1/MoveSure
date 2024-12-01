@@ -4,9 +4,14 @@ MoveSure/
 │   ├── app.py        # Flask/Django app
 │   ├── models/       # AI models
 │   └── utils/        # Helper functions
+│       └── movement_detection.py/        # Helper functions
 │
 ├── frontend/         # User Interface
 │   ├── static/       # CSS/JS files
+│   │    ├── css/       # CSS files
+│   │         ├── style.css       # CSS files
+│   ├── js/           # JS files
+│       ├── script.js       # CSS/JS files
 │   └── templates/    # HTML templates
 │
 ├── data/             # For datasets or logs

@@ -3,11 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoveSure Camera Feed</title>
+    <title>MoveSure</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1>MoveSure Posture Monitoring</h1>
-    <img src="{{ url_for('video_feed') }}" width="640" height="480" />
-    <p><a href="{{ url_for('start_monitoring') }}">Start Posture Monitoring</a></p>
+    <header>
+        <h1>MoveSure</h1>
+    </header>
+    <main>
+        <button id="startButton">Start Monitoring</button>
+<video id="videoElement" width="640" height="480" autoplay></video>
+
+    </main>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
+
 </html>

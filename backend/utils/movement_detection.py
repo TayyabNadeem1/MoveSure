@@ -1,7 +1,7 @@
 import cv2
 import mediapipe as mp
 
-def detect_posture(video_source=0):
+def detect_posture(video_source=1):
     mp_pose = mp.solutions.pose
     pose = mp_pose.Pose()
     cap = cv2.VideoCapture(video_source)
