@@ -1,0 +1,14 @@
+MoveSure/
+│
+├── backend/          # Server-side logic
+│   ├── app.py        # Flask/Django app
+│   ├── models/       # AI models
+│   └── utils/        # Helper functions
+│
+├── frontend/         # User Interface
+│   ├── static/       # CSS/JS files
+│   └── templates/    # HTML templates
+│
+├── data/             # For datasets or logs
+├── docs/             # Documentation
+└── requirements.txt  # Python dependencies
