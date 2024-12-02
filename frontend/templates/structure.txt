@@ -1,19 +1,17 @@
 MoveSure/
-│
-├── backend/          # Server-side logic
-│   ├── app.py        # Flask/Django app
-│   ├── models/       # AI models
-│   └── utils/        # Helper functions
-│       └── movement_detection.py/        # Helper functions
-│
-├── frontend/         # User Interface
-│   ├── static/       # CSS/JS files
-│   │    ├── css/       # CSS files
-│   │         ├── style.css       # CSS files
-│   ├── js/           # JS files
-│       ├── script.js       # CSS/JS files
-│   └── templates/    # HTML templates
-│
-├── data/             # For datasets or logs
-├── docs/             # Documentation
-└── requirements.txt  # Python dependencies
+├── backend/
+│   ├── app.py
+│   ├── models/
+│   └── utils/
+│       └── movement_detection.py
+├── frontend/
+│   ├── static/
+│   │   ├── css/
+│   │   └── js/
+│   ├── sounds/
+│   │   └── feedback.mp3
+│   └── templates/
+│       └── index.html
+├── data/
+├── docs/
+└── requirements.txt

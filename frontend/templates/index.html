@@ -8,12 +8,20 @@
 </head>
 <body>
     <h1>Posture Monitoring</h1>
+    
+    <!-- Video Container to show live feed -->
     <div class="video-container">
         <img id="video" src="{{ url_for('video_feed') }}" alt="Video feed">
     </div>
+    
+    <!-- Controls to start and stop monitoring -->
     <div class="controls">
         <button id="startBtn" onclick="startMonitoring()">Start Monitoring</button>
+        <button id="stopBtn" onclick="stopMonitoring()" disabled>Stop Monitoring</button>
     </div>
+    
+    <!-- Display feedback messages or monitoring status -->
+    <div id="statusMessage" style="margin-top: 10px;"></div>
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
