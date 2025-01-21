@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://kit.fontawesome.com/92ce2e27c0.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/LOGO (1).png') }}" alt="Logo">
+
+        </div>
+        <ul>
+            <li>
+                <img src="{{ url_for('static', filename='images/tabler_report.png') }}" alt="Dashboard">
+            </li>
+            <li>
+                <img src="{{ url_for('static', filename='images/Vector.png') }}" alt="Settings">
+            </li>
+            
+            <li>
+                <img src="{{ url_for('static', filename='images/iconamoon_profile-light.png') }}" alt="profile">
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Left Section -->
+       
+        <div class="section-left">
+            <!-- <img src="./left-section-background.png"> -->
+            <!-- <div class="user-profile">
+                <img src="userpic.png" alt="User Picture">
+            </div>-->
+            <div class="check-condition">
+                
+                <button id="startPostureButton">Click Here</button>
+
+            </div> 
+        </div>
+
+        <!-- Center Section -->
+        <div class="section-center">
+            <div class="hi-user">Hi, User!</div>
+            <div class="weekly-report">
+                <h2>Weekly Report</h2>
+                <div class="pie-chart">
+                    <canvas id="weeklyReportChart"></canvas>
+                </div>
+                <div class="report-details">
+                    <div class="box">Total hours: 4 Hours 28 Minutes</div>
+                    <div class="box">Increased Productivity: 58%</div>
+                </div>
+            </div>
+
+            <!-- Progress Evaluation Section -->
+            <div class="progress-evaluation">
+                <h2>Progress Evaluation</h2>
+                <p>Today, 5 October 2024</p>
+
+                <!-- Monthly Progress Bar -->
+                <div class="month-bar">
+                    <div class="bar-container">
+                        <canvas id="monthChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Daily Progress Section -->
+                <div class="daily-progress">
+                    <p>Daily Progress</p>
+                    <canvas id="dailyProgressChart" width="65" height="65"></canvas> <!-- Increased size by 30% -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Section -->
+        <div class="section-right">
+            <div class="top-bar">
+                <div class="circle">
+                    <img src="{{ url_for('static', filename='images/profile.png') }}" alt="User Picture">
+                    
+                </div>
+                <div class="circle">
+                    <img src="{{ url_for('static', filename='images/notif.png') }}" alt="Notifications">
+                    
+                </div>
+                <div class="circle">
+                    <img src="{{ url_for('static', filename='images/search.png') }}" alt="Search">
+                    
+                </div>
+            </div>
+
+            <!-- Calendar -->
+            <div class="calendar">
+                <h2 id="calendar-date"></h2>
+                <div id="calendar-container"></div>
+            </div>
+
+            <!-- Posture Bars -->
+            <div class="posture-bars">
+                <div class="good-posture-container">
+                    <div class="label">Good Posture</div>
+                    <div class="good-posture-bar">
+                        <div class="filled"></div>
+                        <div class="unfilled"></div>
+                        <div class="percentage">75%</div>
+                    </div>
+                </div>
+                
+                <!-- Bad Posture Bar -->
+                <div class="bad-posture-container">
+                    <div class="label">Bad Posture</div>
+                    <div class="bad-posture-bar">
+                        <div class="filled"></div>
+                        <div class="unfilled"></div>
+                        <div class="percentage">25%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        //Camera
+        
+            document.getElementById('startPostureButton').addEventListener('click', function () {
+                fetch('/start-posture', {
+                    method: 'POST',
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "success") {
+                        alert(data.message); // Show success message
+                    } else {
+                        alert("Error: " + data.message); // Show error message
+                    }
+                })
+                .catch(error => {
+                    alert("Failed to start posture monitoring: " + error);
+                });
+            });
+        
+        
+
+
+        // Weekly Report Pie Chart
+        const ctx = document.getElementById('weeklyReportChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Good Posture', 'Bad Posture'],
+                datasets: [{
+                    data: [4, 3],
+                    backgroundColor: ['#4caf50', '#ff5722']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+
+        // Daily Progress Circle Chart
+        const dailyCtx = document.getElementById('dailyProgressChart').getContext('2d');
+        new Chart(dailyCtx, {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    data: [75, 25],
+                    backgroundColor: ['#4caf50', '#e0e0e0']
+                }]
+            },
+            options: {
+                circumference: 360,
+                rotation: -90,
+                cutout: '70%',
+                plugins: {
+                    tooltip: {
+                        enabled: false
+                    }
+                }
+            }
+        });
+
+        // Monthly Progress Bar Chart (4 months)
+        const monthChartData = {
+            type: 'bar',
+            data: {
+                labels: ['October', 'November', 'December', 'January'],
+                datasets: [{
+                    label: 'Progress',
+                    data: [70, 80, 65, 90], // Monthly progress
+                    backgroundColor: '#4caf50',
+                    borderRadius: 5,
+                    barThickness: 45 // Increased size for better visibility
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        };
+
+        new Chart(document.getElementById('monthChart').getContext('2d'), monthChartData);
+
+        // Calendar
+        function generateCalendar() {
+            const today = new Date();
+            const month = today.getMonth();
+            const year = today.getFullYear();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const firstDayOfMonth = new Date(year, month, 1).getDay();
+            const calendarContainer = document.getElementById('calendar-container');
+            let calendarHtml = '<div class="calendar-grid">';
+            for (let i = 0; i < firstDayOfMonth; i++) {
+                calendarHtml += '<div class="calendar-day empty"></div>';
+            }
+            for (let day = 1; day <= daysInMonth; day++) {
+                const isToday = day === today.getDate();
+                const isPastDay = day < today.getDate();
+                const dayClass = isToday ? 'calendar-day today' : isPastDay ? 'calendar-day past' : 'calendar-day';
+                calendarHtml += `<div class="${dayClass}">${day}</div>`;
+            }
+            calendarHtml += '</div>';
+            document.getElementById('calendar-date').textContent = `${today.toLocaleString('default', { month: 'long' })} ${year}`;
+            calendarContainer.innerHTML = calendarHtml;
+        }
+
+        generateCalendar();
+    </script>
+</body>
+</html>
