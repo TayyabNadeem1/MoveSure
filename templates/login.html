@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+    <script src="https://kit.fontawesome.com/7a74c6f81d.js" crossorigin="anonymous"></script>
+    <!-- Adding jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="login-page">
+        <div class="login-left">
+            <div class="logo">
+                <img src="/static/images/logo.png" alt="Logo" class="logo-image">
+            </div>
+            <img src="/static/images/bigpic.png" alt="Login Illustration" class="login-image">
+        </div>
+        <div class="login-right">
+            <div class="login-panel">
+                <h1>Welcome Back!</h1>
+                <p>Enter your credentials to login</p>
+                
+                <!-- ✅ Login Form -->
+                <form id="login-form">
+                    <div class="input-with-icon">
+                        <i class="fa fa-envelope icon"></i>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="input-with-icon">
+                        <i class="fa fa-key icon"></i>
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                    </div>
+                    <div class="options">
+                        <label><input type="checkbox"> Remember me</label>
+                        <a href="#">Forgot Password?</a>
+                    </div>
+                    <button type="submit">Sign In</button>
+                </form>
+
+                <div class="register-link">
+                    <p>Don’t have an account? <a href="{{ url_for('register') }}">Register Now</a></p>
+                </div>
+                
+                
+                <!-- ✅ Success/Error Message -->
+                <p id="message" style="color: red; text-align: center; display: none;"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ✅ JavaScript for handling login -->
+    <script>
+        $(document).ready(function () {
+            $('#login-form').on('submit', function (e) {
+                e.preventDefault(); // Prevent default form submission
+
+                // Get input values
+                const email = $('#email').val().trim();
+                const password = $('#password').val();
+
+                if (!email || !password) {
+                    $('#message').css('color', 'red').text('Both fields are required.').show();
+                    return;
+                }
+
+                // AJAX POST request to the server
+                $.ajax({
+                    url: 'http://localhost:3000/login',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ email, password }),
+                    success: function (response) {
+                        $('#message').css('color', 'green').text('Login successful! Redirecting...').show();
+                        setTimeout(() => {
+                            window.location.href = '/home'; // Redirect to the home route served by Flask
+                        }, 2000);
+                    },                    
+                    error: function (xhr) {
+                        const errorMessage = xhr.responseJSON?.message || 'Error logging in. Please try again.';
+                        $('#message').css('color', 'red').text(errorMessage).show();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

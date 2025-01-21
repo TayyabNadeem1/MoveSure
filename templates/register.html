@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='register.css') }}">
+    <script src="https://kit.fontawesome.com/7a74c6f81d.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div id="register-page">
+        <!-- Left Side -->
+        <div class="register-left">
+            <div class="logo">
+                <img src="/static/images/logo.png" alt="Logo" class="logo-image">
+            </div>
+            <img src="{{ url_for('static', filename='images/registerimg.png') }}" alt="Register Illustration" class="register-image">
+
+
+        </div>
+
+        <!-- Right Side -->
+        <div class="register-right">
+            <div class="register-panel">
+                <h1>Welcome to MoveSure!</h1>
+                <p>Enter your credentials to Sign Up</p>
+
+                <!-- Form -->
+                <form id="register-form">
+                    <!-- Email Field -->
+                    <div class="input-with-icon">
+                        <i class="fa fa-envelope icon"></i>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="input-with-icon">
+                        <i class="fa fa-key icon"></i>
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                    </div>
+
+                    <!-- Confirm Password Field -->
+                    <div class="input-with-icon">
+                        <i class="fa fa-key icon"></i>
+                        <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+                    </div>
+
+                    <!-- Options Section -->
+                    <div class="options">
+                        <label><input type="checkbox"> Remember me</label>
+                        <a href="#">Forgot Password?</a>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit">Sign Up</button>
+                </form>
+
+                <!-- Already Registered Link -->
+                <div class="register-link">
+                    <p>Already have an account?</p>
+                    <a href="{{ url_for('login') }}">
+                        <button type="button" style="margin-top: 10px;">Sign In</button>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Form Handling -->
+    <script>
+        $(document).ready(function () {
+            // Form submission handler
+            $('#register-form').on('submit', function (e) {
+                e.preventDefault(); // Prevent normal form submission
+
+                const email = $('#email').val().trim();
+                const password = $('#password').val();
+                const confirmPassword = $('#confirm-password').val();
+
+                // Basic validation
+                if (!email || !password || !confirmPassword) {
+                    alert('All fields are required!');
+                    return;
+                }
+
+                if (password !== confirmPassword) {
+                    alert('Passwords do not match!');
+                    return;
+                }
+
+                // Send data to the backend using AJAX
+                $.ajax({
+                    url: 'http://localhost:3000/register',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ email, password }),
+                    success: function (response) {
+                        alert('User registered successfully!');
+                        window.location.href = '/home'; // Redirect to login page
+                    },
+                    error: function (error) {
+                        alert('Error registering user. Please try again.');
+                        console.error('Error:', error);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
