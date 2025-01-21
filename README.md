@@ -24,6 +24,7 @@ MoveSure is an AI-powered posture correction system designed to monitor and impr
 - MediaPipe
 - Numpy
 - Pygame
+- Node.js
 
 ### Installation Steps:
 1. Clone the repository to your local machine:
@@ -41,11 +42,19 @@ MoveSure is an AI-powered posture correction system designed to monitor and impr
     pip install -r requirements.txt
     ```
 
-4. Ensure that your system's camera or a webcam is accessible to the program.
+4. Install Node.js dependencies:
+    ```bash
+    cd node_app
+    npm install
+    ```
+
+5. Ensure that your system's camera or a webcam is accessible to the program.
 
 ## Usage
 
-1. Run the program:
+### Running the Python Application:
+
+1. **Open a terminal** window and run the Python application:
     ```bash
     python main.py
     ```
@@ -56,10 +65,25 @@ MoveSure is an AI-powered posture correction system designed to monitor and impr
 
 4. The system also gives audio alerts when needed to remind users to correct their posture.
 
+### Running the Node.js Application:
+
+1. **Open another terminal** window (or a new tab) and navigate to the `node_app` directory:
+    ```bash
+    cd movesure/node_app
+    ```
+
+2. Run the Node.js application with:
+    ```bash
+    node app.js
+    ```
+
+This will start the Node.js server that integrates with the Python posture monitoring system. 
+
 ## Customization
 
 - **Sensitivity**: You can adjust the sensitivity of slouching detection by modifying the `slouching_threshold_factor` value in the code.
 - **Audio Alerts**: You can change the audio file for alerts by updating the `sound_file` variable in the code.
+- **Node.js Server**: Modify the `app.js` file to fit your specific use case if you need to adjust the server-side functionality.
 
 ## License
 
@@ -72,4 +96,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-You can replace `yourusername` with your actual GitHub username and adjust the audio file path or other project-specific details as needed.
+### Key Points:
+- **Python Application**: Run in one terminal window using `python main.py`.
+- **Node.js Application**: Run in another terminal window using `node app.js`.
+
+This setup will allow you to run both applications simultaneously.
