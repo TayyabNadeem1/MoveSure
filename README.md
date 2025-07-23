@@ -1,32 +1,82 @@
-# MoveSure: AI-Based Person Movement and Posture Monitoring
+# 🧠 MoveSure: AI-Based Posture & Movement Monitoring System
 
-MoveSure is an AI-powered posture correction system designed to monitor and improve the posture of individuals, such as workers, students, or anyone sitting for prolonged periods. The system uses computer vision to detect body movements and postures via camera feeds and provides real-time feedback to prevent back pain and promote healthy sitting habits.
+**MoveSure** is an AI-powered posture monitoring and correction system designed to help individuals—such as workers, students, or anyone sitting for long periods—maintain healthy posture habits. Using real-time computer vision, MoveSure detects poor posture and slouching through a webcam feed and delivers immediate feedback to the user.
 
-## Features
+---
 
-- **Real-Time Posture Detection**: Using AI and computer vision techniques, the system analyzes the posture of the user and detects when it deviates from the correct posture.
-  
-- **Slouching Detection**: The system identifies slouching by measuring the distance between the user's mouth and shoulder midpoints. When the user slouches beyond a predefined threshold, it alerts them to correct their posture.
+## ⚙️ Features
 
-- **Neck, Shoulder, and Spine Angle Monitoring**: The system monitors the angles of key body parts, including the neck, shoulders, and spine, to detect misalignments or strains.
+- ✅ **Real-Time Posture Detection**  
+  Uses computer vision (MediaPipe + OpenCV) to detect human pose landmarks and monitor posture in real time.
 
-- **Feedback and Alerts**: When poor posture or slouching is detected, the system provides real-time visual feedback on the screen, turning it red and displaying a "Poor Posture" message. It can also trigger audio alerts for immediate attention.
+- 🪑 **Slouching Detection**  
+  Measures the distance between key landmarks (mouth and shoulders) to detect slouching. Alerts users when the posture crosses a defined threshold.
 
-- **Posture Calibration**: The system allows the user to calibrate their posture by staying in a neutral position for a few seconds at the start. This calibration helps the system identify a baseline for good posture.
+- 📐 **Neck, Shoulder, and Spine Angle Monitoring**  
+  Continuously tracks posture angles to spot unhealthy patterns or strains.
 
-- **Posture History and Reporting**: MoveSure can log posture data over time, helping users track their progress and identify patterns that lead to poor posture.
+- 🔴 **Feedback & Alerts**  
+  - Red screen + “Poor Posture” message for incorrect posture  
+  - Green screen + “Good Posture” when posture is healthy  
+  - Optional audio alerts for extra awareness (via Pygame)
 
-## Installation
+- 🎯 **Posture Calibration**  
+  Automatically calibrates neutral sitting posture by having the user sit still for a few seconds at startup.
 
-### Requirements:
-- Python 3.x
-- OpenCV
-- MediaPipe
-- Numpy
-- Pygame
-- Node.js
+- 📊 **Posture History (Optional)**  
+  Logs posture behavior over time for tracking improvements or identifying trends.
 
-### Installation Steps:
+---
+
+## 📸 UI/UX
+
+<div align="center">
+
+<table>
+<tr>
+<td align="center"><strong>Login Page</strong><br><img src="https://github.com/user-attachments/assets/9fc4a9bd-327c-4a86-a6bb-63636d3e2e57" width="400"/></td>
+<td align="center"><strong>Sign Up Page</strong><br><img src="https://github.com/user-attachments/assets/c5473143-4b08-4966-9a64-41b3c0765f81" width="400"/></td>
+</tr>
+<tr>
+<td align="center"><strong>Home Page</strong><br><img src="https://github.com/user-attachments/assets/d21c2c67-d69c-4062-976e-31409445db0c" width="400"/></td>
+<td align="center"><strong>Profile Page</strong><br><img src="https://github.com/user-attachments/assets/b365dde1-2719-49ad-85ed-021da9955c1c" width="400"/></td>
+</tr>
+<tr>
+<td colspan="2" align="center"><strong>Report Page</strong><br><img src="https://github.com/user-attachments/assets/52dfb575-62e2-437f-a2b8-5dcc3e26f867" width="600"/></td>
+</tr>
+</table>
+
+</div>
+
+---
+
+## 🛠 Installation
+
+### 📋 Requirements
+
+- Python 3.x  
+- OpenCV  
+- MediaPipe  
+- Numpy  
+- Pygame  
+- Node.js (for backend/server integration)
+
+---
+
+## 🛠 Installation
+
+### 📋 Requirements
+
+- Python 3.x  
+- OpenCV  
+- MediaPipe  
+- Numpy  
+- Pygame  
+- Node.js (for backend/server integration)
+
+---
+
+### 💻 Installation Steps:
 1. Clone the repository to your local machine:
     ```bash
     git clone https://github.com/yourusername/movesure.git
