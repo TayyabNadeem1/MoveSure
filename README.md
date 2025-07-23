@@ -1,5 +1,6 @@
 # 🧠 MoveSure: AI-Based Posture & Movement Monitoring System
 
+
 <div align="center">
 
 <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" />
@@ -7,8 +8,10 @@
 <img src="https://img.shields.io/badge/MediaPipe-FE6B00?style=for-the-badge&logo=google&logoColor=white" />
 <img src="https://img.shields.io/badge/Pygame-000000?style=for-the-badge&logo=pygame&logoColor=white" />
 <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white" />
+<img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" />
 
 </div>
+
 
 **MoveSure** is an AI-powered posture monitoring and correction system designed to help individuals—such as workers, students, or anyone sitting for long periods—maintain healthy posture habits. Using real-time computer vision, MoveSure detects poor posture and slouching through a webcam feed and delivers immediate feedback to the user.
 
