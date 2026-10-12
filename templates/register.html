@@ -92,7 +92,7 @@
 
                 // Send data to the backend using AJAX
                 $.ajax({
-                    url: 'http://localhost:3000/register',
+                    url: '/register',
                     type: 'POST',
                     contentType: 'application/json',
                     data: JSON.stringify({ email, password }),
